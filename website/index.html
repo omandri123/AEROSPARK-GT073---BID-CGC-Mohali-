@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BID - Blockchain Identification Network</title>
+  <!-- Optional web fonts: the page falls back to system fonts when offline -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Inline icon set (no external icon library needed) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-id" viewBox="0 0 24 24"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm4 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-3 8h6c0-2-1.5-3-3-3s-3 1-3 3Zm9-8v2h6V9h-6Zm0 4v2h5v-2h-5Z" fill="currentColor"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2 4 5v6c0 5 3.4 9.3 8 11 4.6-1.7 8-6 8-11V5l-8-3Zm-1 14-3.5-3.5 1.4-1.4L11 13.2l4.1-4.1 1.4 1.4L11 16Z" fill="currentColor"/></symbol>
+    <symbol id="i-send" viewBox="0 0 24 24"><path d="M2 21 23 12 2 3v7l15 2-15 2v7Z" fill="currentColor"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><path d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1Zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2Zm0 16H8V7h11v14Z" fill="currentColor"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><path d="M18 8h-1V6a5 5 0 0 0-10 0v2H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2ZM9 6a3 3 0 0 1 6 0v2H9V6Z" fill="currentColor"/></symbol>
+    <symbol id="i-warn" viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21Zm12-3h-2v-2h2v2Zm0-4h-2v-4h2v4Z" fill="currentColor"/></symbol>
+    <symbol id="i-db" viewBox="0 0 24 24"><path d="M12 3C7 3 3 4.3 3 6v12c0 1.7 4 3 9 3s9-1.3 9-3V6c0-1.7-4-3-9-3Zm0 2c4.4 0 7 1 7 1s-2.6 1-7 1-7-1-7-1 2.6-1 7-1Zm0 14c-4.4 0-7-1-7-1v-2.3c1.6.8 4.2 1.3 7 1.3s5.4-.5 7-1.3V18s-2.6 1-7 1Zm0-5c-4.4 0-7-1-7-1V9.7c1.6.8 4.2 1.3 7 1.3s5.4-.5 7-1.3V13s-2.6 1-7 1Z" fill="currentColor"/></symbol>
+    <symbol id="i-copyline" viewBox="0 0 24 24"><path d="M19 3h-4.2a3 3 0 0 0-5.6 0H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2Zm-7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2Zm2 14H7v-2h7v2Zm3-4H7v-2h10v2Zm0-4H7V7h10v2Z" fill="currentColor"/></symbol>
+  </svg>
+
+  <!-- Animated blockchain network background -->
+  <canvas id="net" aria-hidden="true"></canvas>
+  <div class="glow glow-cyan" aria-hidden="true"></div>
+  <div class="glow glow-blue" aria-hidden="true"></div>
+
+  <div class="page">
+    <!-- Navigation -->
+    <header class="nav glass">
+      <div class="nav-inner">
+        <a class="brand" href="#top" aria-label="BID home">
+          <span class="logo">B</span>
+          <span class="brand-text">
+            <span class="brand-name">BID <small>(blockchain identification network)</small></span>
+            <span class="brand-sub">Encrypted Identity Protocol</span>
+          </span>
+        </a>
+        <nav class="nav-links">
+          <a class="btn-nav" href="#how">How it works</a>
+          <a class="btn-grad btn-sm" href="#register">Register</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <!-- Hero -->
+      <section class="hero">
+        <div class="pill">
+          <span class="dot"></span>
+          <span>Sovereign Identity for India</span>
+        </div>
+        <h1>Tamper-Evident &amp; Encrypted<br><span class="grad-text">Digital Identity Registration</span></h1>
+        <p class="lead">
+          Stop handing photocopies of your ID to everyone. BID encrypts your details, records them in a
+          SHA-256 linked block, and gives you one BID. Later, share only the fields you choose.
+        </p>
+        <div class="hero-actions">
+          <a class="btn-grad" href="#register">
+            <svg class="ic"><use href="#i-id"/></svg><span>Register Your BID</span>
+          </a>
+          <a class="btn-glass" href="#how">
+            <svg class="ic ic-blue"><use href="#i-shield"/></svg><span>See how it works</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- Problem -->
+      <section class="section" id="why">
+        <div class="section-head">
+          <p class="eyebrow">Weak spots of paper and shared copies</p>
+          <h2>Why Traditional Verification Fails</h2>
+        </div>
+        <div class="grid-3">
+          <article class="card accent-amber">
+            <div class="card-top">
+              <span class="icon-box amber"><svg class="ic"><use href="#i-copyline"/></svg></span>
+              <div><h3>Copies Everywhere</h3><span class="muted-xs">Over-sharing</span></div>
+            </div>
+            <p>A full photocopy is handed over even when only a name or an age is needed, and nobody can see where it ends up.</p>
+          </article>
+          <article class="card accent-rose">
+            <div class="card-top">
+              <span class="icon-box rose"><svg class="ic"><use href="#i-warn"/></svg></span>
+              <div><h3>Easy to Forge</h3><span class="muted-xs">Document tampering</span></div>
+            </div>
+            <p>Paper and scanned copies are simple to edit, and a verifier has no quick way to tell a genuine one from a forgery.</p>
+          </article>
+          <article class="card accent-sky">
+            <div class="card-top">
+              <span class="icon-box sky"><svg class="ic"><use href="#i-db"/></svg></span>
+              <div><h3>Single Points of Failure</h3><span class="muted-xs">Data leaks</span></div>
+            </div>
+            <p>Plain-text records in one database are an attractive target, and a single leak exposes everything at once.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Registration form -->
+      <section class="section" id="register">
+        <div class="panel glass">
+          <div class="section-head tight">
+            <span class="icon-box sky big"><svg class="ic"><use href="#i-id"/></svg></span>
+            <h2>User Identity Submission Form</h2>
+            <p class="muted">Submit your details to create a block. They are encrypted on the server and you receive your BID.</p>
+          </div>
+
+          <details class="settings">
+            <summary>Server settings</summary>
+            <label for="serverUrl">Blockchain server URL</label>
+            <input id="serverUrl" type="url" value="http://10.110.1.142:5000" autocomplete="off">
+            <div class="settings-row">
+              <button type="button" id="testBtn" class="btn-ghost">Test connection</button>
+              <span id="testResult" class="hint" role="status"></span>
+            </div>
+          </details>
+
+          <form id="bidForm" novalidate>
+            <div class="field photo-field">
+              <label for="profile_photo">Profile photo *</label>
+              <div class="photo-row">
+                <div class="avatar" id="avatar" aria-live="polite">
+                  <svg class="ic avatar-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0 2c-4 0-8 2-8 5v3h16v-3c0-3-4-5-8-5Z" fill="currentColor"/></svg>
+                  <img id="avatarImg" alt="Selected profile photo" hidden>
+                </div>
+                <div class="photo-actions">
+                  <input id="profile_photo" name="profile_photo" type="file" accept="image/*" hidden>
+                  <div class="photo-buttons">
+                    <button type="button" id="photoBtn" class="btn-ghost">Choose photo</button>
+                    <button type="button" id="photoClear" class="btn-ghost" hidden>Remove</button>
+                  </div>
+                  <small id="photoInfo" class="hint">JPEG or PNG. It is cropped to a square, shrunk, and stored encrypted.</small>
+                </div>
+              </div>
+              <small class="err" data-for="profile_photo"></small>
+            </div>
+
+            <div class="row-2">
+              <div class="field">
+                <label for="full_legal_name">Full legal name *</label>
+                <input id="full_legal_name" name="full_legal_name" type="text" autocomplete="name" placeholder="e.g. Vikramaditya Singh" required>
+                <small class="err" data-for="full_legal_name"></small>
+              </div>
+              <div class="field">
+                <label for="date_of_birth">Date of birth *</label>
+                <input id="date_of_birth" name="date_of_birth" type="date" required>
+                <small class="err" data-for="date_of_birth"></small>
+              </div>
+            </div>
+
+            <div class="row-2">
+              <div class="field">
+                <label for="phone_number">Phone number *</label>
+                <input id="phone_number" name="phone_number" type="tel" inputmode="numeric" maxlength="10" placeholder="10 digits" required>
+                <small class="err" data-for="phone_number"></small>
+              </div>
+              <div class="field">
+                <label for="country_of_residence">Country of residence *</label>
+                <select id="country_of_residence" name="country_of_residence" required>
+                  <option value="">Select country</option>
+                  <option>India</option>
+                  <option>United States</option>
+                  <option>United Kingdom</option>
+                  <option>Canada</option>
+                  <option>Australia</option>
+                  <option>United Arab Emirates</option>
+                  <option>Singapore</option>
+                  <option>Other</option>
+                </select>
+                <small class="err" data-for="country_of_residence"></small>
+              </div>
+            </div>
+
+            <div class="row-2">
+              <div class="field">
+                <label for="aadhaar">Aadhaar number *</label>
+                <input id="aadhaar" name="aadhaar" type="text" inputmode="numeric" maxlength="14" placeholder="XXXX XXXX XXXX" class="mono" required>
+                <small class="err" data-for="aadhaar"></small>
+              </div>
+              <div class="field">
+                <label for="dob_proof">Date-of-birth proof *</label>
+                <select id="dob_proof" name="dob_proof" required>
+                  <option value="">Select document</option>
+                  <option>10th Marksheet - CBSE</option>
+                  <option>Passport</option>
+                  <option>Birth Certificate</option>
+                  <option>Driving Licence</option>
+                </select>
+                <small class="err" data-for="dob_proof"></small>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="proof_of_address">Proof of address *</label>
+              <textarea id="proof_of_address" name="proof_of_address" rows="2" placeholder="House No, Street, City, State, PIN (and the document used, e.g. Electricity Bill)" required></textarea>
+              <small class="err" data-for="proof_of_address"></small>
+            </div>
+
+            <div id="banner" class="banner" role="alert" hidden></div>
+
+            <div class="form-actions">
+              <button type="button" id="demoBtn" class="btn-ghost">Fill demo data</button>
+              <button type="submit" id="submitBtn" class="btn-grad btn-block">
+                <span class="spinner" hidden></span>
+                <svg class="ic icon-send"><use href="#i-send"/></svg>
+                <span class="label">Submit to blockchain</span>
+              </button>
+            </div>
+          </form>
+
+          <!-- Result -->
+          <section id="result" class="result" hidden aria-live="polite">
+            <div class="tick" aria-hidden="true">&#10003;</div>
+            <h3>Block added to the blockchain</h3>
+            <div class="result-photo-row" id="resultPhotoRow" hidden>
+              <img id="resultPhoto" class="result-photo" alt="Your profile photo">
+              <p class="photo-note" id="photoNote"></p>
+            </div>
+            <p class="muted">Your BID. Keep it safe, you need it in the app.</p>
+            <code id="bidValue"></code>
+            <div class="qr-box" id="qrBox">
+              <canvas id="qrCanvas" width="240" height="240" role="img" aria-label="QR code containing your BID"></canvas>
+              <p class="muted">Scan this QR code to read your BID</p>
+            </div>
+            <div class="meta">
+              <span>Block #<b id="blockIndex"></b></span>
+              <span id="blockTime"></span>
+            </div>
+            <div class="form-actions center">
+              <button type="button" id="copyBtn" class="btn-grad">
+                <svg class="ic"><use href="#i-copy"/></svg><span>Copy BID</span>
+              </button>
+              <button type="button" id="qrDownloadBtn" class="btn-ghost">Download QR</button>
+              <button type="button" id="againBtn" class="btn-ghost">Add another</button>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <!-- Architecture -->
+      <section class="section" id="how">
+        <div class="section-head">
+          <p class="eyebrow">What happens when you submit</p>
+          <h2>The 7-Step BID Pipeline</h2>
+        </div>
+        <div class="grid-4">
+          <article class="card step"><span class="num">01</span><p class="step-tag">Step 01</p><h3>Data Entry</h3><p>You enter your details. The website checks the format of each field.</p></article>
+          <article class="card step"><span class="num">02</span><p class="step-tag">Step 02</p><h3>Secure Request</h3><p>The details are sent as JSON to the blockchain server's /add_block route.</p></article>
+          <article class="card step"><span class="num">03</span><p class="step-tag">Step 03</p><h3>Encryption</h3><p>The server encrypts the data with AES (Fernet) before it is stored.</p></article>
+          <article class="card step"><span class="num">04</span><p class="step-tag">Step 04</p><h3>SHA-256 Hash</h3><p>A 64-character SHA-256 hash is computed over the block and the previous hash.</p></article>
+          <article class="card step"><span class="num">05</span><p class="step-tag">Step 05</p><h3>Chain Link</h3><p>The new block points to the previous one, so editing any block breaks the chain.</p></article>
+          <article class="card step"><span class="num">06</span><p class="step-tag">Step 06</p><h3>BID Issued</h3><p>The block's hash becomes your unique BID, returned to you on this page.</p></article>
+          <article class="card step wide"><span class="num">07</span><p class="step-tag teal">Step 07</p><h3>You Choose What to Share</h3><p>In the BID app, switch on only the fields you want. Only those are fetched and sent phone to phone.</p></article>
+        </div>
+      </section>
+
+      <!-- Advantages -->
+      <section class="section">
+        <div class="section-head">
+          <h2>Key Advantages</h2>
+        </div>
+        <div class="grid-3">
+          <article class="card small"><svg class="ic ic-blue"><use href="#i-lock"/></svg><h3>Encrypted Storage</h3><p>Personal data is stored encrypted, not as plain text.</p></article>
+          <article class="card small"><svg class="ic ic-blue"><use href="#i-shield"/></svg><h3>Tamper-Evident</h3><p>Each block is hash-linked, and the chain can be validated at any time.</p></article>
+          <article class="card small"><svg class="ic ic-blue"><use href="#i-id"/></svg><h3>Selective Sharing</h3><p>Share a name without sharing an Aadhaar number. You decide per field.</p></article>
+          <article class="card small"><svg class="ic ic-blue"><use href="#i-send"/></svg><h3>Works Offline</h3><p>Phone-to-phone sharing needs no internet connection.</p></article>
+          <article class="card small"><svg class="ic ic-blue"><use href="#i-copyline"/></svg><h3>One BID, No Photocopies</h3><p>Register once and reuse the same BID everywhere.</p></article>
+          <article class="card small"><svg class="ic ic-blue"><use href="#i-db"/></svg><h3>Simple to Run</h3><p>A small Flask server and a Flutter app. Easy to demo and extend.</p></article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>BID Protocol &copy; 2026 &bull; Prototype built for Graviton 2026, CGC University, Mohali</p>
+    </footer>
+  </div>
+
+  <div id="toasts" class="toasts" aria-live="polite"></div>
+  <script src="qr.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
